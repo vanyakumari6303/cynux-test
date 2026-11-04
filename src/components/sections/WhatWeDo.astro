@@ -1,0 +1,41 @@
+---
+/** E2 · What we do (index of the three disciplines) */
+import '../../styles/sections/what-we-do.css';
+
+const rows = [
+  { num: '01', title: 'Cybersecurity', href: '#cybersecurity', mod: 'cyber', glyph: 'iso-cyber', count: '10 services',
+    desc: 'Find the weak spots before attackers do, and stay compliant as you grow.' },
+  { num: '02', title: 'Design', href: '#design', mod: 'design', glyph: 'iso-design', count: '6 services',
+    desc: 'Websites, apps and brands people understand on the first try.' },
+  { num: '03', title: 'Development', href: '#development', mod: 'dev', glyph: 'iso-dev', count: '6 services',
+    desc: 'Fast, reliable websites and apps, tested for security before launch.' },
+];
+---
+<section class="wwd" id="what-we-do" aria-labelledby="wwd-label">
+  <div class="wwd__frame">
+    <img class="wwd__corner tl" src="/assets/corner-tl.svg" width="15" height="15" alt="">
+    <img class="wwd__corner tr" src="/assets/corner-tr.svg" width="15" height="15" alt="">
+    <img class="wwd__corner bl" src="/assets/corner-bl.svg" width="15" height="15" alt="">
+    <img class="wwd__corner br" src="/assets/corner-br.svg" width="15" height="15" alt="">
+
+    <div class="wwd__head">
+      <h2 class="wwd__label" id="wwd-label">// 01 — What we do</h2>
+      <p class="wwd__meta">Three disciplines</p>
+    </div>
+
+    <ol class="wwd__list">
+      {rows.map((r) => (
+        <li>
+          <a class={`wwd__row wwd__row--${r.mod}`} href={r.href}>
+            <span class="wwd__num">{r.num}</span>
+            <span class="wwd__title">{r.title}</span>
+            <span class="wwd__desc">{r.desc}</span>
+            <img class="wwd__glyph" src={`/assets/${r.glyph}.svg`} width="110" height="84" alt="">
+            <span class="wwd__count">{r.count}</span>
+            <span class="wwd__go" aria-hidden="true"><img src="/assets/arrow-down.svg" width="16" height="16" alt=""></span>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

@@ -1,0 +1,81 @@
+/* ---------- E2 · What we do (index) ---------- */
+.wwd { background: var(--bg); padding: 30px 24px 110px; }
+.wwd__frame {
+  position: relative; max-width: 1200px; margin: 0 auto;
+  border: 1px dashed rgba(255,255,255,.14);
+}
+.wwd__corner { position: absolute; z-index: 1; pointer-events: none; }
+.wwd__corner.tl { left: -1px; top: -1px; }
+.wwd__corner.tr { right: -1px; top: -1px; }
+.wwd__corner.bl { left: -1px; bottom: -1px; }
+.wwd__corner.br { right: -1px; bottom: -1px; }
+
+.wwd__head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 25px 27px 17px;
+  font-weight: 500; font-size: 13px; line-height: normal;
+}
+.wwd__label { font: inherit; color: #f0a8ff; letter-spacing: 1.3px; text-transform: uppercase; }
+.wwd__meta { color: rgba(255,255,255,.5); }
+
+.wwd__list { list-style: none; }
+/* Per-row accent colours (were inline style="" — moved here so a strict CSP can block inline styles) */
+.wwd__row--cyber  { --accent: #a78bfa; --tint: rgba(124,58,237,.16); }
+.wwd__row--design { --accent: #f472b6; --tint: rgba(211,39,126,.16); }
+.wwd__row--dev    { --accent: #34d399; --tint: rgba(16,185,129,.16); }
+.wwd__row {
+  display: flex; align-items: center;
+  padding: 22px 27px 21px; /* Figma's dashed border is an overlay, so content starts 1px earlier */
+  border-top: 1px dashed rgba(255,255,255,.12);
+  background: linear-gradient(90deg, var(--tint) 0%, transparent 60%) no-repeat;
+  background-size: 0% 100%;
+  transition: background-size .35s ease;
+}
+/* Highlight: hovered/focused row; the first row by default (as in the design) */
+.wwd__row:hover, .wwd__row:focus-visible,
+.wwd__list:not(:hover):not(:focus-within) li:first-child .wwd__row { background-size: 100% 100%; }
+.wwd__row:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+.wwd__num { flex: 0 0 70px; color: var(--accent); font-weight: 500; font-size: 16px; }
+.wwd__title { flex: 0 0 400px; font-weight: 700; font-size: 46px; letter-spacing: -1.38px; line-height: normal; }
+.wwd__desc { flex: 0 1 360px; font-size: 15px; line-height: 24px; color: rgba(255,255,255,.55); }
+.wwd__glyph { margin-left: auto; flex-shrink: 0; transition: transform .3s ease; }
+.wwd__row:hover .wwd__glyph { transform: translateY(-4px); }
+.wwd__count { margin-left: 30px; font-weight: 500; font-size: 14px; color: rgba(255,255,255,.7); white-space: nowrap; }
+.wwd__go {
+  margin-left: 24px; flex-shrink: 0;
+  width: 44px; height: 44px; border-radius: 100px;
+  border: 1px solid rgba(255,255,255,.25);
+  display: grid; place-items: center;
+  transition: border-color .2s, background .2s;
+}
+.wwd__row:hover .wwd__go { border-color: var(--accent); background: var(--tint); }
+.wwd__go img { transition: transform .2s; }
+.wwd__row:hover .wwd__go img { transform: translateY(2px); }
+
+@media (max-width: 1180px) {
+  .wwd__title { flex-basis: 300px; font-size: 40px; }
+  .wwd__desc { flex-basis: 300px; margin-right: 20px; }
+}
+@media (max-width: 900px) {
+  .wwd { padding-bottom: 80px; }
+  .wwd__row {
+    display: grid; grid-template-columns: 36px auto minmax(0,1fr) auto; column-gap: 12px; row-gap: 10px;
+    grid-template-areas: "num title title title" ". desc desc desc" ". glyph count go";
+    padding: 22px 20px;
+  }
+  .wwd__head { padding: 22px 20px 16px; }
+  .wwd__num { grid-area: num; align-self: center; }
+  .wwd__title { grid-area: title; font-size: 32px; letter-spacing: -1px; }
+  .wwd__desc { grid-area: desc; margin-right: 0; }
+  .wwd__glyph { grid-area: glyph; width: 66px; height: 50px; margin: 0; }
+  .wwd__count { grid-area: count; margin: 0; align-self: center; }
+  .wwd__go { grid-area: go; margin: 0; }
+}
+@media (max-width: 480px) {
+  .wwd__title { font-size: 28px; }
+  .wwd__head { flex-direction: column; align-items: flex-start; gap: 6px; }
+}
+
+
+

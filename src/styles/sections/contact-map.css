@@ -1,0 +1,74 @@
+/* ---------- C3 · Locate our office ---------- */
+.cm { position: relative; isolation: isolate; overflow: hidden; padding: 120px 24px 140px; }
+.cm__glow { top: 200px; }
+.cm__head { max-width: 1200px; margin: 0 auto 48px; display: flex; flex-direction: column; gap: 16px; text-transform: uppercase; }
+.cm__eyebrow { font-weight: 500; font-size: 13px; letter-spacing: 1.3px; color: #f0a8ff; line-height: normal; }
+.cm__title { font-weight: 700; font-size: 56px; line-height: 60px; letter-spacing: -1.68px; }
+.cm__title span { display: block; color: rgba(255,255,255,.38); }
+
+.cm__wrap { position: relative; max-width: 1200px; margin: 0 auto; }
+.cm__corner { position: absolute; z-index: 2; pointer-events: none; }
+.cm__corner.tl { left: -.75px; top: -.75px; }
+.cm__corner.tr { right: -.75px; top: -.75px; }
+.cm__corner.bl { left: -.75px; bottom: -.75px; }
+.cm__corner.br { right: -.75px; bottom: -.75px; }
+
+/* Map box: 1200×580 with the live map filling it and the office card on top. */
+.cm__map {
+  position: relative; height: 580px; overflow: hidden; isolation: isolate;
+  background: #0e0d16; border: 1px solid rgba(255,255,255,.12); border-radius: 24px;
+}
+.cm__gmap { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+/* Dark look to match the site: invert, then rotate hues back so roads, parks and the red pin keep their colours */
+.cm__gmap--dark { filter: invert(.9) hue-rotate(180deg) saturate(.75) brightness(.95) contrast(.9); }
+
+/* Address card */
+.cm__card {
+  position: absolute; z-index: 1; left: 27px; top: 27px; width: 400px;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 27px;
+  background: rgba(11,10,18,.94); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.12); border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.55);
+}
+.cm__label { font-weight: 500; font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; color: #f472b6; line-height: normal; }
+.cm__name { font-weight: 700; font-size: 26px; letter-spacing: -.52px; line-height: normal; }
+.cm__addr { font-style: normal; font-size: 15px; line-height: 24px; color: #b4b8c5; }
+.cm__rule { width: 100%; height: 1px; border: 0; background: rgba(255,255,255,.1); }
+.cm__row { display: flex; align-items: center; gap: 12px; }
+.cm__ic {
+  width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center; flex-shrink: 0;
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12);
+}
+.cm__row > span:last-child { display: flex; flex-direction: column; gap: 1px; line-height: normal; white-space: nowrap; }
+.cm__row small { font-size: 11px; color: rgba(255,255,255,.45); }
+.cm__row a { font-weight: 500; font-size: 14px; transition: color .2s; }
+.cm__row a:hover { color: var(--violet-300); }
+.cm__btns { display: flex; gap: 10px; padding-top: 4px; flex-wrap: wrap; }
+.cm__btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 18px;
+  border-radius: 100px; font-size: 14px; line-height: normal; white-space: nowrap; transition: box-shadow .2s, background .2s, transform .2s;
+}
+.cm__btn--primary {
+  font-weight: 600;
+  background: linear-gradient(164.49deg, #d3277e 0%, #7c3aed 100%);
+  box-shadow: 0 0 18px rgba(197,42,143,.35);
+}
+.cm__btn--primary:hover { box-shadow: 0 0 28px rgba(197,42,143,.55); transform: translateY(-1px); }
+.cm__btn--ghost { font-weight: 500; padding: 12px 17px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.18); }
+.cm__btn--ghost:hover { background: rgba(255,255,255,.09); }
+.cm__btn:focus-visible { outline: 2px solid #f0a8ff; outline-offset: 3px; }
+.cm__copy {
+  display: inline-flex; align-items: center; gap: 8px; padding: 0; background: none; border: 0; cursor: pointer;
+  color: #a78bfa; font: inherit; font-weight: 600; font-size: 13px; line-height: normal;
+}
+.cm__copy:hover span { text-decoration: underline; text-underline-offset: 2px; }
+.cm__copy:focus-visible { outline: 2px solid #a78bfa; outline-offset: 4px; border-radius: 4px; }
+
+@media (max-width: 900px) {
+  .cm { padding: 80px 16px 96px; }
+  .cm__title { font-size: 40px; line-height: 44px; }
+  /* Phones/tablets: map on top, card underneath */
+  .cm__map { height: auto; display: flex; flex-direction: column; }
+  .cm__gmap { position: static; height: 320px; }
+  .cm__card { position: static; width: 100%; border: 0; border-top: 1px solid rgba(255,255,255,.12); border-radius: 0; box-shadow: none; }
+}

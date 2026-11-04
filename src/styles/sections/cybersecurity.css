@@ -1,0 +1,130 @@
+/* ---------- E3 · Cybersecurity ---------- */
+.cs { position: relative; background: var(--bg); padding: 110px 24px 77px; overflow: hidden; isolation: isolate; }
+.cs__glow { position: absolute; top: 0; left: 50%; transform: translateX(-50%); z-index: -1; pointer-events: none; max-width: none; }
+.cs__head { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; }
+.cs__eyebrow { font-weight: 500; font-size: 12px; letter-spacing: .96px; color: rgba(240,168,255,.8); line-height: normal; }
+.cs__title { font-weight: 700; font-size: 52px; line-height: 62px; letter-spacing: -1.56px; text-transform: uppercase; }
+.cs__title span { color: rgba(255,255,255,.38); }
+.cs__lede { max-width: 620px; font-size: 17px; line-height: 28px; color: #99a1af; }
+
+.cs__frame {
+  position: relative; max-width: 1200px; margin: 65px auto 0;
+  display: grid; grid-template-columns: 440px 1fr;
+}
+/* Figma draws the dashed frame as an overlay rectangle, so it must not take up layout space */
+.cs__frame::after { content: ""; position: absolute; inset: 0; border: 1px dashed rgba(255,255,255,.14); pointer-events: none; z-index: 1; }
+.cs__corner { position: absolute; z-index: 2; pointer-events: none; }
+.cs__corner.tl { left: 0; top: 0; }
+.cs__corner.tr { right: 0; top: 0; }
+.cs__corner.bl { left: 0; bottom: 0; }
+.cs__corner.br { right: 0; bottom: 0; }
+
+/* Tab list */
+.cs__list { padding: 8px 0; display: flex; flex-direction: column; }
+.cs__group--a { --g: #a78bfa; --gt: rgba(167,139,250,.85); }
+.cs__group--b { --g: #fbbf24; --gt: rgba(251,191,36,.85); }
+.cs__group--c { --g: #f472b6; --gt: rgba(244,114,182,.85); }
+.cs__group {
+  display: flex; align-items: center; gap: 10px; padding: 20px 20px 10px;
+  font-weight: 500; font-size: 11px; letter-spacing: 1.1px; text-transform: uppercase; color: var(--gt); line-height: 13px;
+}
+.cs__group::before { content: ""; width: 6px; height: 6px; background: var(--g); flex-shrink: 0; }
+.cs__tab {
+  position: relative; display: flex; flex-direction: column; gap: 8px; width: 100%;
+  padding: 15px 20px 14px; text-align: left; font: inherit; color: inherit; cursor: pointer;
+  background: transparent; border: 0; border-bottom: 1px dashed rgba(255,255,255,.08);
+  transition: background .2s;
+}
+.cs__tab::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 29px; width: 3px;
+  background: linear-gradient(180deg, #d3277e, #7c3aed); opacity: 0; transition: opacity .2s;
+}
+.cs__tab:hover { background: rgba(255,255,255,.025); }
+.cs__tab:focus-visible { outline: 2px solid #a78bfa; outline-offset: -2px; }
+.cs__tab-row { display: flex; align-items: center; gap: 10px; }
+.cs__tab-title { flex: 1; min-width: 0; font-weight: 500; font-size: 15.5px; line-height: normal; color: rgba(255,255,255,.75); transition: color .2s; }
+.cs__tab:hover .cs__tab-title { color: #fff; }
+.cs__tab-desc { font-size: 12px; line-height: 21px; color: #99a1af; }
+.cs__tab .i-arrow { display: none; }
+.cs__tab[aria-selected="true"] { background: linear-gradient(90deg, rgba(124,58,237,.28), rgba(124,58,237,0)); }
+.cs__tab[aria-selected="true"]::before { opacity: 1; }
+.cs__tab[aria-selected="true"] .cs__tab-title { font-weight: 600; color: #fff; }
+.cs__tab[aria-selected="true"] .cs__tab-desc { color: #c9c3de; }
+.cs__tab[aria-selected="true"] .i-plus { display: none; }
+.cs__tab[aria-selected="true"] .i-arrow { display: block; }
+
+/* Preview panel */
+.cs__panel {
+  background: #0e0d16; border-left: 1px solid rgba(255,255,255,.1);
+  padding: 44px 44px 44px 43px; /* left stroke sits inside Figma's 44px padding */ display: flex; flex-direction: column; gap: 22px; min-width: 0;
+}
+.cs__panel:focus-visible { outline: 2px solid #a78bfa; outline-offset: -2px; }
+.cs__top { display: flex; align-items: flex-start; }
+.cs__intro { flex: 0 0 380px; display: flex; flex-direction: column; gap: 16px; }
+.cs__kicker { font-weight: 500; font-size: 12px; letter-spacing: .96px; color: rgba(240,168,255,.7); line-height: normal; }
+.cs__h3 { font-weight: 700; font-size: 36px; line-height: 42px; }
+.cs__body { max-width: 370px; font-size: 15px; line-height: 25px; color: #b4b8c5; }
+.cs__chips { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+.cs__chips li {
+  padding: 5px 11px; border-radius: 100px;
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.14);
+  font-weight: 500; font-size: 12px; color: #e5e7eb; line-height: 15px;
+}
+.cs__art { flex-shrink: 0; margin-left: auto; margin-right: -10px; margin-top: 0; }
+.cs__rule { border: 0; height: 1px; background: rgba(255,255,255,.1); }
+.cs__label { font-weight: 500; font-size: 12px; letter-spacing: .96px; text-transform: uppercase; color: rgba(255,255,255,.5); line-height: normal; }
+.cs__gets { list-style: none; display: grid; grid-template-columns: repeat(2, 322px); gap: 12px; }
+.cs__gets li {
+  display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 14px;
+  background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); border-radius: 10px;
+  font-weight: 500; font-size: 14px; color: #e5e7eb;
+}
+.cs__gets li img { flex-shrink: 0; }
+.cs__cta { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.cs__btn {
+  display: inline-flex; align-items: center; gap: 10px; padding: 15px 26px; border-radius: 100px;
+  background: linear-gradient(169.7deg, #d3277e 0%, #7c3aed 100%);
+  box-shadow: 0 0 22px rgba(197,42,143,.35);
+  font-weight: 600; font-size: 15px; line-height: 18px;
+  transition: box-shadow .2s, transform .2s;
+}
+.cs__btn:hover { box-shadow: 0 0 34px rgba(197,42,143,.55); transform: translateY(-1px); }
+.cs__btn img { transition: transform .2s; }
+.cs__btn:hover img { transform: translateX(3px); }
+.cs__cta-note { font-size: 13px; color: rgba(255,255,255,.5); }
+.cs__hint {
+  margin-top: auto; display: flex; align-items: center; gap: 12px; padding: 13px 18px;
+  background: rgba(124,58,237,.1); border: 1px solid rgba(139,92,246,.3); border-radius: 12px;
+}
+.cs__hint img { flex-shrink: 0; }
+.cs__hint p { font-size: 14px; color: #e9d5ff; line-height: normal; }
+
+[data-fade] { transition: opacity .18s ease, transform .18s ease; }
+.is-swapping [data-fade] { opacity: 0; transform: translateY(6px); }
+@media (prefers-reduced-motion: reduce) { [data-fade] { transition: none; } }
+
+@media (max-width: 1180px) {
+  .cs__frame { grid-template-columns: 360px 1fr; }
+  .cs__intro { flex: 1 1 auto; }
+  .cs__art { width: 220px; height: auto; margin-right: -10px; }
+  .cs__gets { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 900px) {
+  .cs { padding-top: 80px; }
+  .cs__title { font-size: 36px; line-height: 44px; letter-spacing: -1px; }
+  .cs__lede { font-size: 16px; line-height: 26px; }
+  .cs__frame { display: block; margin-top: 48px; }
+  .cs__panel { border-left: 0; border-bottom: 1px dashed rgba(255,255,255,.08); padding: 24px 20px; }
+  .cs__art { display: none; }
+  .cs__intro { flex-basis: auto; }
+  .cs__h3 { font-size: 28px; line-height: 34px; }
+  .cs__gets { grid-template-columns: 1fr; }
+  .cs__hint { margin-top: 0; }
+  .cs__tab .i-arrow { transform: rotate(90deg); }
+}
+@media (max-width: 480px) {
+  .cs__title { font-size: 28px; line-height: 34px; }
+}
+
+
+

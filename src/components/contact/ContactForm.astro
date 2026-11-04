@@ -1,0 +1,105 @@
+---
+/**
+ * C2 · Send us a message.
+ * Validates in the browser (src/scripts/contact-form.js → enquiry-form.js) but doesn't send anything yet.
+ */
+import '../../styles/sections/contact-form.css';
+import { contact } from '../../data/site.js';
+
+const helpWith = [
+  { icon: 'ct-book', text: 'Courses, certifications and batch dates' },
+  { icon: 'ct-school', text: 'Training programs for colleges and universities' },
+  { icon: 'ct-shield', text: 'Cybersecurity services for your business' },
+  { icon: 'ct-code', text: 'Design and development projects' },
+];
+const topics = [
+  { v: 'Courses & training', icon: 'ct-chip-book', pressed: true },
+  { v: 'Cybersecurity', icon: 'ct-chip-shield' },
+  { v: 'Design & development', icon: 'ct-chip-code' },
+  { v: 'College partnership', icon: 'ct-chip-school' },
+  { v: 'Something else', icon: 'chip-dots' },
+];
+const countryCodes = [
+  { v: '+91', label: 'IN +91' }, { v: '+971', label: 'AE +971' }, { v: '+65', label: 'SG +65' },
+  { v: '+44', label: 'UK +44' }, { v: '+1', label: 'US +1' },
+];
+---
+<section class="cf" id="message" aria-labelledby="cf-title">
+  <div class="cf__panel">
+    <img class="cf__glow a" src="/assets/ct-glow-panel-a.svg" width="600" height="440" alt="">
+    <img class="cf__glow b" src="/assets/ct-glow-panel-b.svg" width="600" height="327" alt="">
+
+    <div class="cf__left">
+      <p class="cf__eyebrow">// 01 — Send a message</p>
+      <h2 class="cf__title" id="cf-title">Send us <span>a message</span></h2>
+      <p class="cf__lede">Whether it’s a course enquiry, a college partnership or a new project, tell us what you need. The right person on our team will reply within one business day.</p>
+      <div class="cf__help">
+        <h3 class="cf__help-label">We can help with</h3>
+        <ul>
+          {helpWith.map((h) => <li><span class="cf__help-ic"><img src={`/assets/${h.icon}.svg`} width="15" height="15" alt=""></span>{h.text}</li>)}
+        </ul>
+      </div>
+      <hr class="cf__rule">
+      <div class="cf__contacts">
+        <div class="cf__c"><span class="cf__ci"><img src="/assets/bk-mail.svg" width="15" height="15" alt=""></span><span><small>Email</small><a href={`mailto:${contact.email}`}>{contact.email}</a></span></div>
+        <div class="cf__c"><span class="cf__ci"><img src="/assets/ct-phone-15.svg" width="15" height="15" alt=""></span><span><small>Phone / WhatsApp</small><a href={contact.phoneHref}>{contact.phone}</a></span></div>
+      </div>
+    </div>
+
+    <form class="cf__form" novalidate>
+      <div class="cf__body">
+        <p class="cf__ft">How can we help?</p>
+        <div class="cf__pair">
+          <div class="cf__field">
+            <label for="cf-name">Full name <em>*</em></label>
+            <input class="cf__in" id="cf-name" name="name" autocomplete="name" placeholder="Enter your full name" required>
+            <span class="cf__err" id="cf-name-err"></span>
+          </div>
+          <div class="cf__field">
+            <label for="cf-phone">Phone number <em>*</em></label>
+            <div class="cf__in cf__phone">
+              <span class="cf__cc">
+                <select id="cf-cc" name="cc" aria-label="Country code">
+                  {countryCodes.map((c, i) => <option value={c.v} selected={i === 0}>{c.label}</option>)}
+                </select>
+                <img src="/assets/chev.svg" width="14" height="14" alt="">
+              </span>
+              <i aria-hidden="true"></i>
+              <input id="cf-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="98765 43210" required>
+            </div>
+            <span class="cf__err" id="cf-phone-err"></span>
+          </div>
+        </div>
+        <div class="cf__field">
+          <label for="cf-email">Email address <em>*</em></label>
+          <input class="cf__in" id="cf-email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required>
+          <span class="cf__err" id="cf-email-err"></span>
+        </div>
+        <fieldset class="cf__field cf__topics">
+          <legend>What’s this about? <em>*</em></legend>
+          <div class="cf__chips">
+            {topics.map((t) => (
+              <button type="button" class="cf__chip" aria-pressed={t.pressed ? 'true' : 'false'} data-v={t.v}>
+                <img class="i-own" src={`/assets/${t.icon}.svg`} width="15" height="15" alt="">
+                <img class="i-check" src="/assets/ct-check.svg" width="15" height="15" alt="">
+                {t.v}
+              </button>
+            ))}
+          </div>
+          <span class="cf__err" id="cf-topic-err"></span>
+        </fieldset>
+        <div class="cf__field">
+          <label for="cf-msg">Message</label>
+          <textarea class="cf__in cf__ta" id="cf-msg" name="message" placeholder="Tell us a little about what you need."></textarea>
+        </div>
+        <button class="cf__submit" type="submit">Send message <img src="/assets/arrow-right.svg" width="18" height="18" alt=""></button>
+        <p class="cf__note"><img src="/assets/lock.svg" width="13" height="13" alt="">We reply within one business day. No spam, ever.</p>
+      </div>
+      <div class="cf__done" hidden tabindex="-1">
+        <p class="cf__done-t">Details checked — thanks, <span data-name></span>.</p>
+        <p class="cf__done-d">This preview page can’t send messages yet, so nothing has been submitted. On the live site this would go straight to the team. Until then, email <a href={`mailto:${contact.email}`}>{contact.email}</a> or call <a href={contact.phoneHref}>{contact.phone}</a>.</p>
+        <button type="button" class="cf__again">Edit details</button>
+      </div>
+    </form>
+  </div>
+</section>

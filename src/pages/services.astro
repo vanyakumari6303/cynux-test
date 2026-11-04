@@ -1,0 +1,33 @@
+---
+/**
+ * Services page (/services) — "Services — Option E" from Figma.
+ * Each section is its own component in src/components/sections/ with a matching CSS file
+ * in src/styles/sections/. Section order below matches the Figma frame.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import WhatWeDo from '../components/sections/WhatWeDo.astro';
+import Cybersecurity from '../components/sections/Cybersecurity.astro';
+import DesignDevelopment from '../components/sections/DesignDevelopment.astro';
+import Approach from '../components/sections/Approach.astro';
+import ProjectLead from '../components/sections/ProjectLead.astro';
+import Faq from '../components/sections/Faq.astro';
+import BookConsultation from '../components/sections/BookConsultation.astro';
+import Footer from '../components/sections/Footer.astro';
+---
+<BaseLayout
+  title="Services — Cynux Era | Cybersecurity, design & development"
+  description="Cybersecurity, design and development under one roof. One project lead stays with you from the first call to launch day, and after."
+>
+  <main>
+    <Hero />          <!-- E1 -->
+    <WhatWeDo />      <!-- E2 -->
+    <Cybersecurity /> <!-- E3 -->
+    <DesignDevelopment /> <!-- A5 -->
+    <Approach />      <!-- E5 -->
+    <ProjectLead />   <!-- E6 -->
+    <Faq />           <!-- E7 -->
+    <BookConsultation /> <!-- E8 -->
+  </main>
+  <Footer />          <!-- E9 -->
+</BaseLayout>

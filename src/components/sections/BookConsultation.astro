@@ -1,0 +1,88 @@
+---
+/**
+ * E8 · Book a free consultation.
+ * The form validates input in the browser (src/scripts/booking-form.js) but does not send anything yet —
+ * a backend (API + database) will be connected later.
+ */
+import '../../styles/sections/book-consultation.css';
+import { contact } from '../../data/site.js';
+
+const services = [
+  { v: 'Cybersecurity', icon: 'chip-shield', label: 'Cybersecurity', pressed: true },
+  { v: 'Design', icon: 'chip-pen', label: 'Design' },
+  { v: 'Development', icon: 'chip-code', label: 'Development' },
+  { v: 'Other', icon: 'chip-dots', label: 'Other requirement' },
+];
+const countryCodes = [
+  { v: '+91', label: 'IN +91' }, { v: '+971', label: 'AE +971' }, { v: '+65', label: 'SG +65' },
+  { v: '+44', label: 'UK +44' }, { v: '+1', label: 'US +1' },
+];
+---
+<section class="bk" id="book" aria-labelledby="bk-title">
+  <div class="bk__panel">
+    <img class="bk__glow a" src="/assets/glow-e8a.svg" width="600" height="440" alt="">
+    <img class="bk__glow b" src="/assets/glow-e8b.svg" width="600" height="278" alt="">
+    <div class="bk__left">
+      <h2 class="bk__title" id="bk-title">Book your free<br><span>consultation call</span></h2>
+      <p class="bk__lede">Tell us what you need. Your project lead will call you within one business day to set up a free 30-minute consultation.</p>
+      <hr class="bk__rule">
+      <div class="bk__contacts">
+        <div class="bk__c"><span class="bk__ci"><img src="/assets/bk-mail.svg" width="15" height="15" alt=""></span><span><small>Email</small><a href={`mailto:${contact.email}`}>{contact.email}</a></span></div>
+        <div class="bk__c"><span class="bk__ci"><img src="/assets/bk-pin.svg" width="15" height="15" alt=""></span><span><small>Office</small><b>{contact.office}</b></span></div>
+      </div>
+    </div>
+
+    <form class="bk__form" novalidate>
+      <div class="bk__body">
+        <p class="bk__ft">Tell us about your project</p>
+        <div class="bk__pair">
+          <div class="bk__field">
+            <label for="bk-name">Full name <em>*</em></label>
+            <input class="bk__in" id="bk-name" name="name" autocomplete="name" placeholder="Enter your full name" required>
+            <span class="bk__err" id="bk-name-err"></span>
+          </div>
+          <div class="bk__field">
+            <label for="bk-phone">Phone number <em>*</em></label>
+            <div class="bk__in bk__phone">
+              <span class="bk__cc">
+                <select id="bk-cc" name="cc" aria-label="Country code">
+                  {countryCodes.map((c, i) => <option value={c.v} selected={i === 0}>{c.label}</option>)}
+                </select>
+                <img src="/assets/chev.svg" width="14" height="14" alt="">
+              </span>
+              <i aria-hidden="true"></i>
+              <input id="bk-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="98765 43210" required>
+            </div>
+            <span class="bk__err" id="bk-phone-err"></span>
+          </div>
+        </div>
+        <div class="bk__field">
+          <label for="bk-email">Email address <em>*</em></label>
+          <input class="bk__in" id="bk-email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required>
+          <span class="bk__err" id="bk-email-err"></span>
+        </div>
+        <fieldset class="bk__field bk__svc">
+          <legend>What do you need help with? <em>*</em></legend>
+          <div class="bk__chips">
+            {services.map((s) => (
+              <button type="button" class="bk__chip" aria-pressed={s.pressed ? 'true' : 'false'} data-v={s.v}><img src={`/assets/${s.icon}.svg`} width="15" height="15" alt="">{s.label}</button>
+            ))}
+          </div>
+          <span class="bk__err" id="bk-svc-err"></span>
+        </fieldset>
+        <div class="bk__field">
+          <label for="bk-msg">Message</label>
+          <textarea class="bk__in bk__ta" id="bk-msg" name="message" placeholder="Tell us about your project, timeline or the problem you’re facing."></textarea>
+        </div>
+        <button class="bk__submit" type="submit">Book my free call <img src="/assets/arrow-right.svg" width="18" height="18" alt=""></button>
+        <p class="bk__note"><img src="/assets/lock.svg" width="13" height="13" alt="">No spam. Your details stay with us.</p>
+      </div>
+      <div class="bk__done" hidden tabindex="-1">
+        <p class="bk__done-t">Details checked — thanks, <span data-name></span>.</p>
+        <p class="bk__done-d">This preview page can’t send forms yet, so nothing has been submitted. On the live site this request would go straight to the team. Until then, email <a href={`mailto:${contact.email}`}>{contact.email}</a> or call <a href={contact.phoneHref}>{contact.phone}</a>.</p>
+        <button type="button" class="bk__again">Edit details</button>
+      </div>
+    </form>
+  </div>
+</section>
+

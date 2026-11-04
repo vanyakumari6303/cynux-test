@@ -1,0 +1,39 @@
+---
+/** E5 · Our approach + "SECURE BY DESIGN" outline marquee */
+import '../../styles/sections/approach.css';
+
+const cards = [
+  { num: '// 01', art: 'approach-1', title: 'Secure code from day one', desc: 'Code written to OWASP practices and reviewed before every merge.' },
+  { num: '// 02', art: 'approach-2', title: 'We attack it before launch', desc: 'Our security team tests every release before your users ever see it.', highlight: 'Included in every build' },
+  { num: '// 03', art: 'approach-3', title: 'Locked-down hosting', desc: 'Servers, cloud and admin access set up securely from day one.' },
+];
+---
+<section class="ap" id="approach" aria-labelledby="ap-title">
+  <div class="ap__marquee" aria-hidden="true"><span>SECURE BY DESIGN ✦ SECURE BY DESIGN ✦&nbsp;</span><span>SECURE BY DESIGN ✦ SECURE BY DESIGN ✦&nbsp;</span></div>
+  <img class="ap__glow" src="/assets/glow-e5.svg" width="1100" height="600" alt="">
+  <header class="ap__head">
+    <div class="ap__headl">
+      <p class="ap__eyebrow">// 04 — Our approach</p>
+      <h2 class="ap__title" id="ap-title">Security isn’t an add&#8209;on.<br><span>It’s how we build.</span></h2>
+    </div>
+    <p class="ap__lede">Our developers work alongside our security team. Every website and app we build is tested for vulnerabilities before it goes live, as part of the project, not an extra.</p>
+  </header>
+  <ol class="ap__cards">
+    {cards.map((c) => (
+      <li class={c.highlight ? 'ap__card ap__card--hl' : 'ap__card'}>
+        <div class="ap__top"><span class="ap__num">{c.num}</span>{c.highlight && <span class="ap__badge">{c.highlight}</span>}</div>
+        <img class="ap__art" src={`/assets/${c.art}.svg`} width="328" height="200" alt="">
+        <h3 class="ap__ct">{c.title}</h3>
+        <p class="ap__cd">{c.desc}</p>
+        {c.highlight && (
+          <Fragment>
+            <img class="ap__c tl" src="/assets/c12-tl.svg" width="12" height="12" alt="">
+            <img class="ap__c tr" src="/assets/c12-tr.svg" width="12" height="12" alt="">
+            <img class="ap__c bl" src="/assets/c12-bl.svg" width="12" height="12" alt="">
+            <img class="ap__c br" src="/assets/c12-br.svg" width="12" height="12" alt="">
+          </Fragment>
+        )}
+      </li>
+    ))}
+  </ol>
+</section>

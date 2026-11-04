@@ -1,0 +1,25 @@
+---
+import '../styles/nav.css';
+import { navLinks } from '../data/site.js';
+
+// Highlight the link for the page we're on (e.g. /services, /contact)
+const here = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isCurrent = (href) => href === here;
+---
+<nav class="nav" aria-label="Main">
+  <a class="nav__logo" href="/" aria-label="Cynux Era home">
+    <img src="/assets/logo.png" srcset="/assets/logo.png 1x, /assets/logo@3x.png 3x" width="217" height="45" alt="Cynux Era — Soar with tech wings">
+  </a>
+  <ul class="nav__links">
+    {navLinks.map((l) => <li><a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a></li>)}
+  </ul>
+  <div class="nav__actions">
+    <a class="btn-login" href="#">Login</a>
+    <button class="btn-menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu-panel">
+      <img src="/assets/menu.svg" width="16" height="16" alt="">
+    </button>
+  </div>
+  <div class="menu-panel" id="menu-panel">
+    {navLinks.map((l) => <a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a>)}
+  </div>
+</nav>

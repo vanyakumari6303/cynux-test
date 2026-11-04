@@ -1,0 +1,66 @@
+---
+/** E3 · Cybersecurity — vertical tab list + detail panel. Content: src/data/cyber-services.js */
+import '../../styles/sections/cybersecurity.css';
+import { cyberGroups } from '../../data/cyber-services.js';
+
+const first = cyberGroups[0].services[0];
+---
+<section class="cs" id="cybersecurity" aria-labelledby="cs-title">
+  <img class="cs__glow" src="/assets/glow-e3.svg" width="1200" height="440" alt="">
+
+  <header class="cs__head">
+    <p class="cs__eyebrow">// 02 — Cybersecurity</p>
+    <h2 class="cs__title" id="cs-title">Complete cybersecurity,<br><span>start to finish.</span></h2>
+    <p class="cs__lede">Testing, compliance and incident response for your apps, networks and cloud. Pick a service to see what you get.</p>
+  </header>
+
+  <div class="cs__frame">
+    <img class="cs__corner tl" src="/assets/corner-tl.svg" width="15" height="15" alt="">
+    <img class="cs__corner tr" src="/assets/corner-tr.svg" width="15" height="15" alt="">
+    <img class="cs__corner bl" src="/assets/corner-bl.svg" width="15" height="15" alt="">
+    <img class="cs__corner br" src="/assets/corner-br.svg" width="15" height="15" alt="">
+
+    <div class="cs__list" role="tablist" aria-orientation="vertical" aria-label="Cybersecurity services">
+      {cyberGroups.map((g) => (
+        <Fragment>
+          <p class={`cs__group cs__group--${g.tone}`}>{g.label}</p>
+          {g.services.map((s) => {
+            const selected = s.key === first.key;
+            return (
+              <button class="cs__tab" role="tab" id={`tab-${s.key}`} aria-controls="cs-panel"
+                aria-selected={selected ? 'true' : 'false'} tabindex={selected ? undefined : '-1'} data-key={s.key}>
+                <span class="cs__tab-row"><span class="cs__tab-title">{s.title}</span><img class="i-plus" src="/assets/plus.svg" width="15" height="15" alt=""><img class="i-arrow" src="/assets/tab-arrow.svg" width="15" height="15" alt=""></span>
+                <span class="cs__tab-desc">{s.desc}</span>
+              </button>
+            );
+          })}
+        </Fragment>
+      ))}
+    </div>
+
+    <div class="cs__panel" id="cs-panel" role="tabpanel" aria-labelledby={`tab-${first.key}`} tabindex="0">
+      <div class="cs__top">
+        <div class="cs__intro" data-fade>
+          <p class="cs__kicker" data-f="kicker">{first.kicker}</p>
+          <h3 class="cs__h3" data-f="title">{first.heading}</h3>
+          <p class="cs__body" data-f="body">{first.body}</p>
+          <ul class="cs__chips" data-f="chips">{first.chips.map((c) => <li>{c}</li>)}</ul>
+        </div>
+        <img class="cs__art" src="/assets/shield-art.svg" width="302" height="340" alt="">
+      </div>
+      <hr class="cs__rule">
+      <p class="cs__label">What you get</p>
+      <ul class="cs__gets" data-fade data-f="gets">
+        {first.gets.map((g) => <li><img src="/assets/check.svg" width="15" height="15" alt="">{g}</li>)}
+      </ul>
+      <div class="cs__cta">
+        <a class="cs__btn" href="#book"><span data-f="cta">{first.cta}</span><img src="/assets/arrow-right-16.svg" width="16" height="16" alt=""></a>
+        <span class="cs__cta-note">Free 30-minute scoping call</span>
+      </div>
+      <div class="cs__hint">
+        <img src="/assets/help.svg" width="18" height="18" alt="">
+        <p>Not sure which service fits? Tell us your setup on the call and we’ll recommend where to start.</p>
+      </div>
+    </div>
+  </div>
+</section>

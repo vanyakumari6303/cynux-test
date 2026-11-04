@@ -1,0 +1,39 @@
+---
+/** E9 · Footer */
+import '../../styles/footer.css';
+import { contact, footerColumns, socials } from '../../data/site.js';
+const year = new Date().getFullYear();
+// `tall`: the Contact page footer (C4) has 37px more space above the content than the Services one (E9)
+const { tall = false } = Astro.props;
+---
+<footer class={tall ? 'ft ft--tall' : 'ft'}>
+  <p class="ft__big" aria-hidden="true">CYNUX ERA</p>
+  <div class="ft__inner">
+    <div class="ft__top">
+      <div class="ft__brand">
+        <a href="/" aria-label="Cynux Era home"><img src="/assets/logo.png" srcset="/assets/logo.png 1x, /assets/logo@3x.png 3x" width="217" height="45" alt="Cynux Era — Soar with tech wings" loading="lazy"></a>
+        <div class="ft__social">
+          {socials.map((s) => <a href={s.href} aria-label={s.label}><img src={`/assets/${s.icon}.svg`} width="16" height="16" alt=""></a>)}
+        </div>
+      </div>
+      <nav class="ft__cols" aria-label="Footer">
+        {footerColumns.map((c) => (
+          <div class="ft__col">
+            <h4>{c.heading}</h4>
+            {c.links.map((l) => <a href={l.href}>{l.label}</a>)}
+          </div>
+        ))}
+        <div class="ft__col ft__contact">
+          <h4>Contact us</h4>
+          <div class="ft__ci"><span class="ft__ic"><img src="/assets/ft-mail.svg" width="12" height="12" alt=""></span><span><small>Email</small><a href={`mailto:${contact.email}`}>{contact.email}</a></span></div>
+          <div class="ft__ci"><span class="ft__ic"><img src="/assets/ft-phone.svg" width="12" height="12" alt=""></span><span><small>Phone / WhatsApp</small><a href={contact.phoneHref}>{contact.phone}</a></span></div>
+          <div class="ft__ci"><span class="ft__ic"><img src="/assets/ft-pin.svg" width="12" height="12" alt=""></span><span><small>Office</small><b>{contact.office}, India</b></span></div>
+        </div>
+      </nav>
+    </div>
+    <div class="ft__bar">
+      <p>© {year} Cynux Era · Backed by 7+ years of teaching experience</p>
+      <div><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+    </div>
+  </div>
+</footer>

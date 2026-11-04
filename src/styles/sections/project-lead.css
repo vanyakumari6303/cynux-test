@@ -1,0 +1,90 @@
+/* ---------- E6 · Your project lead + How we work ---------- */
+.pl { position: relative; overflow: hidden; isolation: isolate; background: linear-gradient(180deg, #170d3b 0%, #09090f 100%); padding: 130px 24px; }
+.pl__glow { position: absolute; z-index: -1; pointer-events: none; max-width: none; }
+.pl__glow.a { left: 0; top: 0; }
+.pl__glow.b { right: 0; top: 150px; }
+.pl__inner { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 72px; }
+.pl__top { display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; }
+.pl__copy { flex: 0 1 640px; display: flex; flex-direction: column; gap: 26px; }
+.pl__eyebrow { font-weight: 600; font-size: 14px; letter-spacing: 1.4px; text-transform: uppercase; color: #f0a8ff; line-height: normal; }
+.pl__title { font-weight: 700; font-size: 60px; line-height: 64px; letter-spacing: -1.8px; text-transform: uppercase; }
+.pl__title span { color: rgba(255,255,255,.38); }
+.pl__lede { max-width: 580px; font-size: 18px; line-height: 30px; color: rgba(255,255,255,.82); }
+
+.pl__cardwrap { flex: 0 0 455px; height: 463px; display: grid; place-items: center; }
+.lc {
+  width: 440px; background: #fff; border-radius: 20px; overflow: hidden; color: #0b0a12;
+  transform: rotate(2deg); transition: transform .4s ease, box-shadow .4s ease;
+}
+.lc:hover { transform: rotate(0deg) translateY(-4px); box-shadow: 0 24px 60px rgba(0,0,0,.35); }
+.lc:hover .lc__ic img, .lc:hover .lc__avatar img { transform: none; }
+.lc__head { display: flex; align-items: center; justify-content: space-between; padding: 26px 28px 21px; border-bottom: 1px solid rgba(11,10,18,.08); }
+.lc__who { display: flex; align-items: center; gap: 14px; }
+.lc__avatar { width: 48px; height: 48px; border-radius: 100px; display: grid; place-items: center; background: linear-gradient(135deg, #d3277e 0%, #7c3aed 100%); }
+.lc__name { display: flex; flex-direction: column; gap: 2px; line-height: normal; white-space: nowrap; }
+.lc__name strong { font-weight: 700; font-size: 18px; }
+.lc__name span { font-size: 13px; color: #5b5f6e; }
+.lc__status { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 100px; background: rgba(16,185,129,.12); font-weight: 600; font-size: 12px; color: #047857; line-height: normal; }
+.lc__rows { list-style: none; }
+.lc__row { display: flex; align-items: center; gap: 14px; padding: 18px 28px 17px; border-bottom: 1px solid rgba(11,10,18,.06); }
+.lc__ic { flex-shrink: 0; width: 38px; height: 38px; border-radius: 10px; background: #f5f4fa; display: grid; place-items: center; }
+/* icons were exported with the card's 2° tilt baked in; undo it so the card's own rotation isn't doubled */
+.lc__ic img, .lc__avatar img { transform: rotate(-2deg); transition: transform .4s ease; }
+.lc__rt { display: flex; flex-direction: column; gap: 2px; line-height: normal; min-width: 0; }
+.lc__rt strong { font-weight: 600; font-size: 15px; }
+.lc__rt span { font-size: 13px; color: #5b5f6e; }
+.lc__foot { padding: 20px 28px; font-weight: 500; font-size: 13px; color: #5430d9; line-height: normal; }
+
+.hw { display: flex; flex-direction: column; }
+.hw__title { padding-bottom: 28px; font-weight: 700; font-size: 34px; letter-spacing: -.85px; text-transform: uppercase; line-height: normal; }
+.hw__rail {
+  display: flex; align-items: center; gap: 12px; padding: 11px 17px; border-radius: 100px;
+  background: linear-gradient(90deg, rgba(124,58,237,.35), rgba(211,39,126,.2)); border: 1px solid rgba(167,139,250,.5);
+  font-weight: 600; font-size: 14px; line-height: normal; white-space: nowrap;
+}
+.hw__line { flex: 1; height: 1px; background: rgba(255,255,255,.5); }
+.hw__steps { list-style: none; display: flex; margin-top: 28px; }
+.hw__step { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 12px; padding: 24px 32px 0 0; border-top: 1px solid rgba(255,255,255,.35); }
+.hw__n { position: relative; align-self: flex-start; font-weight: 700; font-size: 52px; line-height: 56px; letter-spacing: -1.56px; color: rgba(255,255,255,.4); }
+/* gradient copy of the number fades in for the active step */
+.hw__n::after {
+  content: attr(data-n); position: absolute; inset: 0; opacity: 0; transition: opacity .25s;
+  background: linear-gradient(100.7deg, #a78bfa 0%, #d3277e 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.hw__step.is-first .hw__n, .hw__step:hover .hw__n { color: transparent; }
+.hw__step.is-first .hw__n::after, .hw__step:hover .hw__n::after { opacity: 1; }
+.hw__steps:hover .hw__step.is-first:not(:hover) .hw__n { color: rgba(255,255,255,.4); }
+.hw__steps:hover .hw__step.is-first:not(:hover) .hw__n::after { opacity: 0; }
+.hw__st { font-weight: 700; font-size: 22px; letter-spacing: -.22px; line-height: normal; }
+.hw__sd { font-size: 15px; line-height: 24px; color: rgba(255,255,255,.78); }
+
+@media (max-width: 1180px) {
+  .pl__title { font-size: 48px; line-height: 52px; }
+  .pl__cardwrap { flex-basis: 420px; }
+  .lc { width: 400px; }
+  .hw__steps { flex-wrap: wrap; row-gap: 32px; }
+  .hw__step { flex: 1 1 calc(50% - 16px); }
+}
+@media (max-width: 900px) {
+  .pl { padding: 96px 24px; }
+  .pl__inner { gap: 56px; }
+  .pl__top { flex-direction: column; align-items: stretch; }
+  .pl__copy { flex: none; }
+  .pl__title { font-size: 36px; line-height: 42px; letter-spacing: -1px; }
+  .pl__lede { font-size: 16px; line-height: 27px; }
+  .pl__cardwrap { flex: none; height: auto; padding: 8px 0; }
+  .lc { width: 100%; max-width: 440px; }
+  .hw__title { font-size: 28px; }
+  .hw__rail { white-space: normal; border-radius: 16px; }
+}
+@media (max-width: 560px) {
+  .hw__step { flex-basis: 100%; padding-right: 0; }
+  .pl__title { font-size: 30px; line-height: 36px; }
+  .lc__head { padding: 22px 20px 18px; }
+  .lc__row { padding: 16px 20px; }
+  .lc__foot { padding: 18px 20px; }
+  .lc__rt span { white-space: normal; }
+}
+
+
+

@@ -1,0 +1,30 @@
+/* Global: self-hosted fonts, design tokens, reset.
+   Inter MUST stay at 3.19 static files - it matches Figma; Inter 4 renders differently. */
+@font-face { font-family: 'Inter'; src: url('/fonts/inter-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('/fonts/inter-500.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('/fonts/inter-600.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('/fonts/inter-700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('/fonts/inter-900.woff2') format('woff2'); font-weight: 900; font-style: normal; font-display: swap; }
+@font-face { font-family: 'JetBrains Mono'; src: url('/fonts/jetbrains-mono-500.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Open Sans'; src: url('/fonts/open-sans-400.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+:root {
+  --bg: #09090f;
+  --violet-600: #5430d9;
+  --violet-400: #a78bfa;
+  --violet-300: #c4b5fd;
+  --pink-400: #f472b6;
+  --emerald-400: #34d399;
+  --text-muted: rgba(255,255,255,.6);
+  --text-faint: rgba(255,255,255,.45);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--bg); }
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; }
+
+

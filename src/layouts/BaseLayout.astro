@@ -1,0 +1,37 @@
+---
+/**
+ * Page shell: <head>, fonts preload, global CSS.
+ * No inline <script> or style="" anywhere, so the site works under a strict Content-Security-Policy
+ * (see deploy/nginx.conf).
+ */
+import '../styles/global.css';
+import '../styles/shared.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <meta name="theme-color" content="#09090f">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" href="/assets/logo.png">
+  <!-- Preload the two fonts used above the fold -->
+  <link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/inter-600.woff2" as="font" type="font/woff2" crossorigin>
+  <slot name="head" />
+</head>
+<body>
+  <slot />
+  <script>
+    import '../scripts/main.js';
+  </script>
+</body>
+</html>

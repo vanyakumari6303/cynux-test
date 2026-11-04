@@ -1,0 +1,94 @@
+/* ---------- C1 · Contact hero + channels ---------- */
+.ch {
+  position: relative; overflow: hidden; isolation: isolate;
+  min-height: 800px; padding: 39px 24px 84px;   /* matches the 1440×800 Figma frame */
+}
+.ch .glow--top { top: 0; }
+.ch__glow-bottom { top: 520px; }
+
+.ch__content { display: flex; flex-direction: column; align-items: center; text-align: center; margin-top: 85px; }
+.ch__title {
+  margin-top: 17px; width: 100%; max-width: 1100px;
+  font-weight: 700; font-size: 88px; line-height: 92px; letter-spacing: -3.96px;
+}
+/* Each line is a 1100px block. Figma adds no tracking after a line's last glyph but CSS does,
+   so a little right padding keeps each line centred exactly where Figma puts it. */
+.ch__title span { display: block; width: 1100px; max-width: 100%; padding-right: 3.96px; }
+.ch__grad {
+  background: linear-gradient(136.5deg, #a78bfa 0%, #f472b6 60%, #d3277e 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* Channels strip: 1200×250 at y=466, dashed frame + pink corners */
+.ch__channels { position: relative; max-width: 1200px; margin: 62px auto 0; }
+.ch__channels::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  border: 1px dashed rgba(255,255,255,.14);
+}
+.ch__corner { position: absolute; z-index: 1; pointer-events: none; }
+.ch__corner.tl { left: -.75px; top: -.75px; }
+.ch__corner.tr { right: -.75px; top: -.75px; }
+.ch__corner.bl { left: -.75px; bottom: -.75px; }
+.ch__corner.br { right: -.75px; bottom: -.75px; }
+
+.ch__list { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: 250px; }
+.ch__card {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 14px;
+  padding: 28px; min-width: 0; overflow: hidden;   /* fixed 250px row, clipped like the Figma frame */
+  border-right: 1px dashed rgba(255,255,255,.12);
+}
+/* Figma puts a 1px flexible spacer between the value and the link */
+.ch__spacer { flex: 1 0 1px; }
+.ch__card:last-child { border-right: 0; }
+.ch__card--email { background: linear-gradient(to bottom, rgba(124,58,237,.14), rgba(124,58,237,0)); }
+
+.ch__ic {
+  width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; flex-shrink: 0;
+  background: var(--ic-bg); border: 1px solid var(--ic-border);
+}
+.ch__card--email  { --ic-bg: rgba(139,92,246,.12); --ic-border: rgba(139,92,246,.45); --link: #a78bfa; }
+.ch__card--call   { --ic-bg: rgba(16,185,129,.12); --ic-border: rgba(16,185,129,.45); --link: #34d399; }
+.ch__card--visit  { --ic-bg: rgba(211,39,126,.12); --ic-border: rgba(211,39,126,.45); --link: #f472b6; }
+.ch__card--follow { --ic-bg: rgba(245,158,11,.12); --ic-border: rgba(245,158,11,.45); }
+
+.ch__label { font-weight: 500; font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,.5); line-height: normal; white-space: nowrap; }
+.ch__value { font-weight: 600; font-size: 19px; line-height: 26px; overflow-wrap: anywhere; }
+.ch__value--address { font-size: 12px; line-height: 21px; }
+
+.ch__link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-weight: 600; font-size: 14px; line-height: normal; color: var(--link); white-space: nowrap;
+}
+.ch__link img { transition: transform .2s; }
+.ch__link:hover img { transform: translateX(3px); }
+.ch__link:focus-visible { outline: 2px solid var(--link); outline-offset: 4px; border-radius: 4px; }
+
+.ch__social { display: flex; gap: 10px; }
+.ch__social a {
+  width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center;
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.14);
+  transition: background .2s, border-color .2s;
+}
+.ch__social a:hover { background: rgba(245,158,11,.12); border-color: rgba(245,158,11,.45); }
+
+@media (max-width: 1240px) {
+  .ch__title { font-size: clamp(40px, 7vw, 88px); line-height: 1.045; letter-spacing: -0.045em; }
+  .ch__title span { padding-right: 0; }
+}
+@media (max-width: 1024px) {
+  .ch { min-height: 0; }
+  .ch__list { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+  .ch__card { min-height: 220px; border-bottom: 1px dashed rgba(255,255,255,.12); }
+  .ch__card:nth-child(2n) { border-right: 0; }
+  .ch__card:nth-child(n+3) { border-bottom: 0; }
+}
+@media (max-width: 640px) {
+  .ch { padding-top: 24px; padding-bottom: 56px; }
+  .ch__content { margin-top: 56px; }
+  .ch__channels { margin-top: 40px; }
+  .ch__list { grid-template-columns: 1fr; }
+  .ch__card { min-height: 0; border-right: 0; border-bottom: 1px dashed rgba(255,255,255,.12); }
+  .ch__card:nth-child(n+3) { border-bottom: 1px dashed rgba(255,255,255,.12); }
+  .ch__card:last-child { border-bottom: 0; }
+  .ch__spacer { flex-basis: 0; }
+}

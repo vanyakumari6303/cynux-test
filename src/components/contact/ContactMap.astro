@@ -1,0 +1,43 @@
+---
+/**
+ * C3 · Locate our office — a live Google Map with the office card on top.
+ * The map address lives in src/data/site.js (contact.mapsEmbedUrl).
+ * It's darkened with a CSS filter to match the site; remove the `cm__gmap--dark` class for Google's normal colours.
+ * If a Content-Security-Policy is added later, allow https://www.google.com in frame-src.
+ */
+import '../../styles/sections/contact-map.css';
+import { contact } from '../../data/site.js';
+---
+<section class="cm" id="office" aria-labelledby="cm-title">
+  <img class="glow cm__glow" src="/assets/ct-glow-map.svg" width="1100" height="600" alt="">
+  <header class="cm__head">
+    <p class="cm__eyebrow">// 02 — Locate our office</p>
+    <h2 class="cm__title" id="cm-title">Find us in <span>Bengaluru</span></h2>
+  </header>
+
+  <div class="cm__wrap">
+    <img class="cm__corner tl" src="/assets/corner-tl.svg" width="15" height="15" alt="">
+    <img class="cm__corner tr" src="/assets/corner-tr.svg" width="15" height="15" alt="">
+    <img class="cm__corner bl" src="/assets/corner-bl.svg" width="15" height="15" alt="">
+    <img class="cm__corner br" src="/assets/corner-br.svg" width="15" height="15" alt="">
+
+    <div class="cm__map">
+      <iframe class="cm__gmap cm__gmap--dark" src={contact.mapsEmbedUrl} title="Google Map showing the Cynux Era office at DSU Innovation Campus, Kudlu Gate, Bengaluru"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+
+      <div class="cm__card">
+        <p class="cm__label">Our office</p>
+        <h3 class="cm__name">Cynux Era</h3>
+        <address class="cm__addr">{contact.address}</address>
+        <hr class="cm__rule">
+        <div class="cm__row"><span class="cm__ic"><img src="/assets/ct-phone-14.svg" width="14" height="14" alt=""></span><span><small>Phone / WhatsApp</small><a href={contact.phoneHref}>{contact.phone}</a></span></div>
+        <div class="cm__row"><span class="cm__ic"><img src="/assets/ct-mail-14.svg" width="14" height="14" alt=""></span><span><small>Email</small><a href={`mailto:${contact.email}`}>{contact.email}</a></span></div>
+        <div class="cm__btns">
+          <a class="cm__btn cm__btn--primary" href={contact.directionsUrl} target="_blank" rel="noopener"><img src="/assets/ct-nav.svg" width="15" height="15" alt="">Get directions</a>
+          <a class="cm__btn cm__btn--ghost" href={contact.mapsUrl} target="_blank" rel="noopener">Open in Maps<img src="/assets/ct-arrow-ur-14.svg" width="14" height="14" alt=""></a>
+        </div>
+        <button type="button" class="cm__copy" data-address={contact.address}><img src="/assets/ct-copy.svg" width="14" height="14" alt=""><span>Copy address</span></button>
+      </div>
+    </div>
+  </div>
+</section>

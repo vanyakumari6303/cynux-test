@@ -1,0 +1,22 @@
+---
+/**
+ * Contact page (/contact) — "Contact us" from Figma (node 432:2).
+ * Sections live in src/components/contact/, styles in src/styles/sections/contact-*.css.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactHero from '../components/contact/ContactHero.astro';
+import ContactForm from '../components/contact/ContactForm.astro';
+import ContactMap from '../components/contact/ContactMap.astro';
+import Footer from '../components/sections/Footer.astro';
+---
+<BaseLayout
+  title="Contact us — Cynux Era | Courses, partnerships and projects"
+  description="Email, call or visit Cynux Era in Bengaluru. Send us a message about courses, college partnerships, cybersecurity or design and development — we reply within one business day."
+>
+  <main>
+    <ContactHero />   <!-- C1 -->
+    <ContactForm />   <!-- C2 -->
+    <ContactMap />    <!-- C3 -->
+  </main>
+  <Footer tall />     <!-- C4 -->
+</BaseLayout>

@@ -1,0 +1,69 @@
+/* ---------- E5 · Our approach ---------- */
+.ap { position: relative; overflow: hidden; isolation: isolate; background: var(--bg); padding: 360px 24px 100px; }
+.ap__marquee {
+  position: absolute; top: 70px; left: -60px; display: flex; width: max-content; z-index: -1; pointer-events: none; user-select: none;
+  font-weight: 900; font-size: 190px; letter-spacing: -7.6px; line-height: normal; white-space: nowrap;
+  color: #09090f; -webkit-text-stroke: 3px rgba(255,255,255,.12); paint-order: stroke fill; /* = Figma's 1.5px outside stroke */
+  animation: ap-marquee 60s linear infinite;
+}
+@keyframes ap-marquee { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .ap__marquee { animation: none; } }
+.ap__glow { position: absolute; top: 300px; left: 50%; transform: translateX(-50%); z-index: -1; pointer-events: none; max-width: none; }
+.ap__head { max-width: 1200px; margin: 0 auto; display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; }
+.ap__headl { display: flex; flex-direction: column; gap: 16px; }
+.ap__eyebrow { font-weight: 500; font-size: 12px; letter-spacing: .96px; color: rgba(240,168,255,.8); line-height: normal; }
+.ap__title { max-width: 840px; font-weight: 700; font-size: 52px; line-height: 58px; letter-spacing: -1.56px; text-transform: uppercase; }
+.ap__title span { background: linear-gradient(141.9deg, #a78bfa 0%, #d3277e 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.ap__lede { flex: 0 0 360px; font-size: 16px; line-height: 26px; color: #99a1af; }
+
+.ap__cards { list-style: none; max-width: 1200px; margin: 141px auto 0; display: flex; }
+.ap__card {
+  position: relative; flex: 0 0 400px; height: 400px; padding: 35px 36px 35px 35px; /* border sits inside the 36px Figma padding */
+  display: flex; flex-direction: column; gap: 14px;
+  background: #0e0d16; border: 1px solid rgba(255,255,255,.1); border-right: 0;
+}
+.ap__card:last-child { border-right: 1px solid rgba(255,255,255,.1); padding-right: 35px; }
+.ap__card--hl { background: linear-gradient(160deg, #1a1433 0%, #0b0a12 100%); }
+.ap__card > * { flex-shrink: 0; } /* content intentionally overflows the padding, as in Figma; don't squash it */
+.ap__top { display: flex; align-items: center; justify-content: space-between; min-height: 15px; }
+.ap__num { font-weight: 500; font-size: 12px; letter-spacing: .96px; color: rgba(255,255,255,.7); line-height: normal; }
+.ap__card--hl .ap__num { color: rgba(240,168,255,.7); }
+.ap__badge {
+  padding: 3px 10px; border-radius: 100px; background: rgba(211,39,126,.15); border: 1px solid rgba(211,39,126,.5);
+  font-weight: 600; font-size: 11px; color: #f9a8d4; line-height: normal;
+}
+.ap__art { flex-shrink: 0; transition: transform .4s ease; }
+.ap__card:hover .ap__art { transform: translateY(-6px); }
+/* Figma: art → 1px spacer → title with 14px gaps, content allowed to run into the bottom padding */
+.ap__ct { margin-top: 15px; font-weight: 600; font-size: 21px; line-height: normal; }
+.ap__cd { font-size: 15px; line-height: 24px; color: #99a1af; }
+.ap__c { position: absolute; pointer-events: none; }
+.ap__c.tl { left: -1px; top: -1px; }
+.ap__c.tr { right: -1px; top: -1px; }
+.ap__c.bl { left: -1px; bottom: -1px; }
+.ap__c.br { right: -1px; bottom: -1px; }
+
+@media (max-width: 1240px) {
+  .ap__card { flex: 1 1 0; min-width: 0; height: auto; min-height: 400px; }
+  .ap__art { width: 100%; max-width: 328px; height: auto; align-self: center; }
+}
+@media (max-width: 900px) {
+  .ap { padding-top: 240px; padding-bottom: 80px; }
+  .ap__marquee { top: 40px; font-size: 120px; letter-spacing: -4.8px; }
+  .ap__glow { top: 180px; }
+  .ap__head { flex-direction: column; align-items: flex-start; gap: 18px; }
+  .ap__lede { flex: none; max-width: 520px; }
+  .ap__title { font-size: 36px; line-height: 42px; letter-spacing: -1px; }
+  .ap__cards { flex-direction: column; margin-top: 48px; }
+  .ap__card { flex: none; min-height: 0; border-right: 1px solid rgba(255,255,255,.1); border-bottom: 0; }
+  .ap__card:last-child { border-bottom: 1px solid rgba(255,255,255,.1); }
+}
+@media (max-width: 480px) {
+  .ap { padding-top: 180px; }
+  .ap__marquee { top: 30px; font-size: 90px; letter-spacing: -3.6px; }
+  .ap__title { font-size: 28px; line-height: 34px; }
+  .ap__card { padding: 28px 24px; }
+}
+
+
+

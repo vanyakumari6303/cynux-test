@@ -1,0 +1,62 @@
+---
+/** E6 · Your project lead + How we work */
+import '../../styles/sections/project-lead.css';
+
+const leadRows = [
+  { icon: 'lead-phone', title: 'Direct line', desc: 'Call or message, no ticket queue' },
+  { icon: 'lead-cal', title: 'Weekly update', desc: 'Every week, without you asking' },
+  { icon: 'lead-users2', title: 'Specialists', desc: 'Security, design and development experts' },
+  { icon: 'lead-life', title: 'After launch', desc: 'Still your contact for fixes and changes' },
+];
+const steps = [
+  { n: '01', title: 'Free consultation', desc: 'A 30-minute call with the person who will lead your project. We listen, ask questions and tell you honestly what you need.' },
+  { n: '02', title: 'Scope & proposal', desc: 'A written scope, timeline and fixed quote. NDA signed before you share anything sensitive.' },
+  { n: '03', title: 'Build & test', desc: 'Our specialists get to work while your lead keeps you updated. Everything is security-tested before launch.' },
+  { n: '04', title: 'Ongoing support', desc: 'After launch, your lead stays your contact for fixes, updates and anything new.' },
+];
+---
+<section class="pl" id="project-lead" aria-labelledby="pl-title">
+  <img class="pl__glow a" src="/assets/glow-e6a.svg" width="800" height="500" alt="">
+  <img class="pl__glow b" src="/assets/glow-e6b.svg" width="540" height="500" alt="">
+  <div class="pl__inner">
+    <div class="pl__top">
+      <div class="pl__copy">
+        <p class="pl__eyebrow">// 05 — Your project lead</p>
+        <h2 class="pl__title" id="pl-title">One person,<br><span>from first call<br>to launch day.</span></h2>
+        <p class="pl__lede">Every project gets a dedicated lead: a senior member of our team who stays with you from start to finish. They plan the work, bring in the right specialists, and give you straight answers. No ticket queues. No being passed around.</p>
+      </div>
+      <div class="pl__cardwrap">
+        <div class="lc">
+          <div class="lc__head">
+            <div class="lc__who">
+              <span class="lc__avatar"><img src="/assets/lead-users.svg" width="23" height="23" alt=""></span>
+              <span class="lc__name"><strong>Your project lead</strong><span>Assigned on day one</span></span>
+            </div>
+            <span class="lc__status"><img src="/assets/lead-dot.svg" width="7" height="7" alt="">With you</span>
+          </div>
+          <ul class="lc__rows">
+            {leadRows.map((r) => (
+              <li class="lc__row"><span class="lc__ic"><img src={`/assets/${r.icon}.svg`} width="18" height="18" alt=""></span><span class="lc__rt"><strong>{r.title}</strong><span>{r.desc}</span></span></li>
+            ))}
+          </ul>
+          <p class="lc__foot">You’ll meet them on your free consultation call.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hw">
+      <h3 class="hw__title">How we work</h3>
+      <div class="hw__rail">
+        <img src="/assets/rail-dot.svg" width="10" height="10" alt="">
+        <span>Your project lead — with you at every step</span>
+        <i class="hw__line" aria-hidden="true"></i>
+        <img src="/assets/arrow-right-16.svg" width="16" height="16" alt="">
+      </div>
+      <ol class="hw__steps">
+        {steps.map((s, i) => (
+          <li class={i === 0 ? 'hw__step is-first' : 'hw__step'}><span class="hw__n" data-n={s.n}>{s.n}</span><h4 class="hw__st">{s.title}</h4><p class="hw__sd">{s.desc}</p></li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>

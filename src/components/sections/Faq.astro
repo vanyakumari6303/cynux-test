@@ -1,0 +1,23 @@
+---
+/** E7 · FAQ accordion. Content: src/data/faqs.js */
+import '../../styles/sections/faq.css';
+import { faqs } from '../../data/faqs.js';
+---
+<section class="fq" id="faq" aria-labelledby="fq-title">
+  <div class="fq__row">
+    <div class="fq__intro">
+      <p class="fq__eyebrow">// 06 — FAQ</p>
+      <h2 class="fq__title" id="fq-title">Questions,<br>answered.</h2>
+      <p class="fq__lede">Something else on your mind? Ask your project lead on the free call.</p>
+      <a class="fq__btn" href="#book">Talk to our team <img src="/assets/arrow-right-16.svg" width="16" height="16" alt=""></a>
+    </div>
+    <div class="fq__list">
+      {faqs.map((f, i) => (
+        <div class={i === 0 ? 'fq__item is-open' : 'fq__item'}>
+          <h3><button class="fq__q" id={`fq-q${i}`} aria-expanded={i === 0 ? 'true' : 'false'} aria-controls={`fq-a${i}`}><span>{f.q}</span><span class="fq__ic" aria-hidden="true"><img class="m" src="/assets/minus.svg" width="14" height="14" alt=""><img class="p" src="/assets/plus-14.svg" width="14" height="14" alt=""></span></button></h3>
+          <div class="fq__a" id={`fq-a${i}`} role="region" aria-labelledby={`fq-q${i}`}><div><p>{f.a}</p></div></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

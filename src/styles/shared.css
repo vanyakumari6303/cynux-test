@@ -1,0 +1,12 @@
+/* Pieces used on more than one page */
+
+/* Soft background glows (absolutely positioned, centred) */
+.glow { position: absolute; left: 50%; transform: translateX(-50%); z-index: -1; pointer-events: none; max-width: none; }
+
+/* Pill label above page headlines, e.g. "# Our services" */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 7px 16px; border-radius: 100px;
+  background: rgba(139,92,246,.1); border: 1px solid rgba(139,92,246,.35);
+  color: var(--violet-300); font-weight: 700; font-size: 14px; line-height: normal;
+}

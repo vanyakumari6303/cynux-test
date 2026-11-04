@@ -1,0 +1,62 @@
+---
+/** C1 · Contact hero + the four contact channels */
+import '../../styles/sections/contact-hero.css';
+import Nav from '../Nav.astro';
+import { contact } from '../../data/site.js';
+
+const socials = [
+  { label: 'LinkedIn', href: '#', icon: 'ct-linkedin' },
+  { label: 'Instagram', href: '#', icon: 'ct-insta' },
+];
+---
+<header class="ch">
+  <img class="glow glow--top" src="/assets/glow-top.svg" width="1400" height="640" alt="">
+  <img class="glow ch__glow-bottom" src="/assets/ct-glow-bottom.svg" width="900" height="500" alt="">
+
+  <Nav />
+
+  <div class="ch__content">
+    <span class="eyebrow"><img src="/assets/dot.svg" width="6" height="6" alt=""># Contact us</span>
+    <h1 class="ch__title"><span>Talk to the people</span> <span class="ch__grad">who do the work.</span></h1>
+  </div>
+
+  <div class="ch__channels">
+    <img class="ch__corner tl" src="/assets/corner-tl.svg" width="15" height="15" alt="">
+    <img class="ch__corner tr" src="/assets/corner-tr.svg" width="15" height="15" alt="">
+    <img class="ch__corner bl" src="/assets/corner-bl.svg" width="15" height="15" alt="">
+    <img class="ch__corner br" src="/assets/corner-br.svg" width="15" height="15" alt="">
+
+    <ul class="ch__list">
+      <li class="ch__card ch__card--email">
+        <span class="ch__ic"><img src="/assets/ct-mail.svg" width="20" height="20" alt=""></span>
+        <h2 class="ch__label">Email us</h2>
+        <p class="ch__value">{contact.email}</p>
+        <span class="ch__spacer"></span>
+        <a class="ch__link" href={`mailto:${contact.email}`}>Write to us <img src="/assets/ct-arrow-violet.svg" width="15" height="15" alt=""></a>
+      </li>
+      <li class="ch__card ch__card--call">
+        <span class="ch__ic"><img src="/assets/ct-phone.svg" width="20" height="20" alt=""></span>
+        <h2 class="ch__label">Call or WhatsApp</h2>
+        <p class="ch__value">{contact.phone}</p>
+        <span class="ch__spacer"></span>
+        <a class="ch__link" href={contact.phoneHref}>Call now <img src="/assets/ct-arrow-green.svg" width="15" height="15" alt=""></a>
+      </li>
+      <li class="ch__card ch__card--visit">
+        <span class="ch__ic"><img src="/assets/ct-pin.svg" width="20" height="20" alt=""></span>
+        <h2 class="ch__label">Visit our office</h2>
+        <p class="ch__value ch__value--address">{contact.address}</p>
+        <span class="ch__spacer"></span>
+        <a class="ch__link" href={contact.directionsUrl} target="_blank" rel="noopener">Get directions <img src="/assets/ct-arrow-pink.svg" width="15" height="15" alt=""></a>
+      </li>
+      <li class="ch__card ch__card--follow">
+        <span class="ch__ic"><img src="/assets/ct-share.svg" width="20" height="20" alt=""></span>
+        <h2 class="ch__label">Follow us</h2>
+        <p class="ch__value">{contact.socialHandle}</p>
+        <span class="ch__spacer"></span>
+        <div class="ch__social">
+          {socials.map((s) => <a href={s.href} aria-label={s.label}><img src={`/assets/${s.icon}.svg`} width="16" height="16" alt=""></a>)}
+        </div>
+      </li>
+    </ul>
+  </div>
+</header>

@@ -1,0 +1,73 @@
+/* ---------- A5 · Design & Development ---------- */
+.dd { background: var(--bg); padding: 40px 24px 40px; display: flex; flex-direction: column; align-items: center; gap: 48px; }
+.dd__head { width: 100%; max-width: 1200px; display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; }
+.dd__headl { display: flex; flex-direction: column; gap: 18px; }
+.dd__eyebrow { font-family: 'JetBrains Mono', ui-monospace, monospace; font-weight: 500; font-size: 12px; letter-spacing: 1.2px; color: rgba(240,168,255,.5); line-height: normal; }
+.dd__title { font-weight: 700; font-size: 52px; line-height: 62px; letter-spacing: -1.56px; text-transform: uppercase; }
+.dd__title span { color: rgba(255,255,255,.38); }
+.dd__lede { flex: 0 0 315px; font-family: 'Open Sans', system-ui, sans-serif; font-size: 17px; line-height: 28px; color: #99a1af; }
+
+.dd__panels { width: 100%; max-width: 1200px; display: flex; align-items: stretch; gap: 24px; } /* both boxes always the same height */
+.dd__panel {
+  flex: 1 1 0; min-width: 0; overflow: hidden;
+  background: #0e0d16; border: 1px solid rgba(255,255,255,.08); border-radius: 24px;
+  --tint: 236,72,153;
+}
+.dd__panel--dev { --tint: 16,185,129; }
+.dd__ph { position: relative; height: 249px; /* Figma's 250 includes the 1px inside border */ overflow: hidden; background: linear-gradient(171.2deg, rgba(var(--tint),.14) 0%, rgba(14,13,22,0) 100%); }
+.dd__glow { position: absolute; left: 299px; top: -1px; pointer-events: none; }
+.dd__iso { position: absolute; left: 289px; top: 9px; pointer-events: none; transition: transform .5s ease; }
+.dd__panel:hover .dd__iso { transform: translateY(-6px); }
+.dd__phtext { position: absolute; left: 35px; top: 39px; display: flex; flex-direction: column; gap: 10px; }
+.dd__pt { font-weight: 700; font-size: 36px; letter-spacing: -.54px; line-height: normal; }
+.dd__ps { width: 240px; font-family: 'Open Sans', system-ui, sans-serif; font-size: 15px; line-height: 24px; color: #99a1af; }
+
+.dd__list { list-style: none; padding: 0 35px 15px; }
+.dd__list li + li .dd__item { border-top: 1px solid rgba(255,255,255,.07); }
+.dd__item { display: flex; align-items: flex-start; gap: 18px; padding: 20px 0; position: relative; }
+.dd__item::before {
+  content: ""; position: absolute; inset: 0 -35px; z-index: 0; pointer-events: none;
+  background: linear-gradient(90deg, rgba(var(--tint),.07), transparent 70%); opacity: 0; transition: opacity .2s;
+}
+.dd__item > * { position: relative; z-index: 1; }
+.dd__item:hover::before, .dd__item:focus-visible::before { opacity: 1; }
+.dd__item:focus-visible { outline: 2px solid rgba(var(--tint),.8); outline-offset: 2px; border-radius: 8px; }
+.dd__ic {
+  flex-shrink: 0; width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
+  background: rgba(var(--tint),.08); border: 1px solid rgba(var(--tint),.35); transition: background .2s, border-color .2s;
+}
+.dd__item:hover .dd__ic { background: rgba(var(--tint),.16); border-color: rgba(var(--tint),.6); }
+.dd__txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.dd__it { font-weight: 600; font-size: 17px; line-height: normal; }
+.dd__id { font-family: 'Open Sans', system-ui, sans-serif; font-size: 14px; line-height: 22px; color: #99a1af; }
+.dd__go { flex-shrink: 0; opacity: .85; transition: transform .2s, opacity .2s; }
+.dd__item:hover .dd__go { transform: translate(2px,-2px); opacity: 1; }
+
+@media (max-width: 1180px) {
+  .dd__title { font-size: 44px; line-height: 52px; }
+  .dd__iso { left: auto; right: -50px; top: 40px; width: 240px; height: auto; }
+  .dd__glow { left: auto; right: 0; }
+  .dd__ps { width: 210px; }
+}
+@media (max-width: 900px) {
+  .dd { padding-bottom: 80px; gap: 36px; }
+  .dd__head { flex-direction: column; align-items: flex-start; gap: 18px; }
+  .dd__lede { flex: none; max-width: 520px; font-size: 16px; line-height: 26px; }
+  .dd__title { font-size: 36px; line-height: 44px; letter-spacing: -1px; }
+  .dd__panels { flex-direction: column; }
+  .dd__panel { width: 100%; flex: none; }
+}
+@media (max-width: 520px) {
+  .dd__title { font-size: 28px; line-height: 34px; }
+  .dd__ph { height: 220px; }
+  .dd__iso { width: 220px; height: auto; right: -50px; top: 40px; }
+  .dd__glow { width: 220px; height: auto; }
+  .dd__phtext { left: 24px; top: 28px; }
+  .dd__pt { font-size: 30px; }
+  .dd__ps { width: 180px; }
+  .dd__list { padding: 0 24px 8px; }
+  .dd__item::before { inset: 0 -24px; }
+}
+
+
+
